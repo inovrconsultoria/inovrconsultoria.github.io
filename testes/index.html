@@ -2,17 +2,36 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+  </script>
+
     <meta charset="utf-8">
     <title>360&deg; Image</title>
     <meta name="description" content="360&deg; Image - A-Frame">
     <script src="aframe-master.js"></script>
   </head>
   <body>
-    <a-scene>
+
+<center><iframe width="50%" height="100%" src="1.png"></iframe></center>
+
+  <div class="slider">
+    <div><a-scene>
       <a-sky src="SALA01.jpg" rotation="0 -130 0"></a-sky>
 
       <a-text font="kelsonsans" value="Elevato Móveis" width="6" position="-2.5 0.25 -1.5"
               rotation="0 15 0"></a-text>
-    </a-scene>
+    </a-scene></div>
+  </div>
+
+<center><iframe width="50%" height="100%" src="2.png"></iframe></center>
+
   </body>
 </html>
