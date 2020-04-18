@@ -39788,7 +39788,12 @@ var Util = _dereq_('./util.js');
 
 var DEBUG = false;
 
-
+    // Show alert on iPad if Safari is on desktop mode.
+    if (utils.device.isMobileDeviceRequestingDesktopSite()) {
+		this.showMobileDesktopModeAlert();
+		return;
+	  }
+  
 	  // Browser doesn't support or doesn't require permission to DeviceOrientationEvent API.
 	  if (typeof DeviceOrientationEvent === 'undefined' || !DeviceOrientationEvent.requestPermission) {
 		this.permissionGranted = true;
@@ -39914,7 +39919,40 @@ var DEBUG = false;
 	  onOkClicked();
 	});
   
-
+	return createDialog(text, buttonsContainer);
+  }
+  
+  function createDialog (text, buttonsContainerEl) {
+	var modalContainer;
+	var dialog;
+	var dialogTextContainer;
+	var dialogText;
+  
+	modalContainer = document.createElement('div');
+	modalContainer.classList.add(MODAL_CLASS);
+	modalContainer.setAttribute(constants.AFRAME_INJECTED, '');
+  
+	dialog = document.createElement('div');
+	dialog.className = DIALOG_CLASS;
+	dialog.setAttribute(constants.AFRAME_INJECTED, '');
+	modalContainer.appendChild(dialog);
+  
+	dialogTextContainer = document.createElement('div');
+	dialogTextContainer.classList.add(DIALOG_TEXT_CONTAINER_CLASS);
+	dialog.appendChild(dialogTextContainer);
+  
+	dialogText = document.createElement('div');
+	dialogText.classList.add(DIALOG_TEXT_CLASS);
+	dialogText.innerHTML = text;
+	dialogTextContainer.appendChild(dialogText);
+  
+	dialog.appendChild(buttonsContainerEl);
+  
+	return modalContainer;
+  }
+  
+  },{"../../constants/":120,"../../core/component":128,"../../utils/":202}],100:[function(_dereq_,module,exports){
+  var registerComponent = _dereq_('../../core/component').registerComponent;
 
 /**
  * An implementation of a simple complementary filter, which fuses gyroscope and
