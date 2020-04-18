@@ -2,6 +2,14 @@
 <HEAD>
     <script src="dist/aframe-master.js"></script>
     <link rel="stylesheet" href="index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+  </script>
 
 	<title>inoVR</title>
  
@@ -10,11 +18,15 @@
 <BODY>
 
 <CENTER><IMG SRC="1.jpg"></CENTER>
+
+  <div class="slider">
   <div id="myEmbeddedScene">
     <a-scene embedded>
         <a-sky src="SALA01.jpg"></a-sky>
     </a-scene>
   </div>
+  </div>
+
 <CENTER><IMG src="2.jpg"></CENTER>
 
 </BODY>
