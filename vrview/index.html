@@ -20,20 +20,11 @@
           <script src="https://richtr.github.io/NoSleep.js/dist/NoSleep.min.js"></script>
 
           <script>
-            var noSleep = new NoSleep();
             function onClick() {
               var wakeLockEnabled = false;
-              toggleEl.addEventListener('click', function() {
-                if (!wakeLockEnabled) {
                 noSleep.enable(); // keep the screen on!
                 wakeLockEnabled = true;
-              } else {
-                noSleep.disable(); // let the screen turn off.
-                wakeLockEnabled = false;
-              }
-            }, false);
             }
-
           </script>
           <button id="permission" onclick="onClick()";>LIBERAR GIRO</button>
           <script src="build/vrview.js"></script>
