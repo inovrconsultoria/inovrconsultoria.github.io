@@ -21,11 +21,10 @@
 
           <script>
             var noSleep = new NoSleep();
-      
-            var wakeLockEnabled = false;
-            var toggleEl = document.querySelector("#permission");
-            toggleEl.addEventListener('click', function() {
-              if (!wakeLockEnabled) {
+            function onClick() {
+              var wakeLockEnabled = false;
+              toggleEl.addEventListener('click', function() {
+                if (!wakeLockEnabled) {
                 noSleep.enable(); // keep the screen on!
                 wakeLockEnabled = true;
               } else {
@@ -33,6 +32,8 @@
                 wakeLockEnabled = false;
               }
             }, false);
+            }
+
           </script>
           <button id="permission" onclick="onClick()";>LIBERAR GIRO</button>
           <script src="build/vrview.js"></script>
