@@ -17,40 +17,39 @@
               <p class="message">An unknown error occurred.</p>
             </div>
           </div>
-          <input onchange='onClick();' style="display: none;" />
           <script src="build/vrview.js"></script>
 
+          <script type="text/javascript">
+            function {
+              // feature detect
+              if (typeof DeviceMotionEvent.requestPermission === 'function' && location.protocol == 'https:') {
+                DeviceMotionEvent.requestPermission()
+                  .then(permissionState => {
+                    if (permissionState === 'granted') {
+                      window.addEventListener('devicemotion', () => {});
+                    }
+                  })
+                  .catch(console.error);
+              } else {
+                // handle regular non iOS 13+ devices
+              }
+            }
+          </script>
+          <script type="text/javascript">
+            function {
+              // feature detect
+              if (typeof DeviceOrientationEvent.requestPermission === 'function' && location.protocol == 'https:') {
+                DeviceOrientationEvent.requestPermission()
+                  .then(permissionState => {
+                    if (permissionState === 'granted') {
+                      window.addEventListener('deviceorientation', () => {});
+                    }
+                  })
+                  .catch(console.error);
+              } else {
+                // handle regular non iOS 13+ devices
+              }
+            }
+            </script>
   </body>
-  <script type="text/javascript">
-  function onClick() {
-    // feature detect
-    if (typeof DeviceMotionEvent.requestPermission === 'function' && location.protocol == 'https:') {
-      DeviceMotionEvent.requestPermission()
-        .then(permissionState => {
-          if (permissionState === 'granted') {
-            window.addEventListener('devicemotion', () => {});
-          }
-        })
-        .catch(console.error);
-    } else {
-      // handle regular non iOS 13+ devices
-    }
-  }
-</script>
-<script type="text/javascript">
-  function onClick() {
-    // feature detect
-    if (typeof DeviceOrientationEvent.requestPermission === 'function' && location.protocol == 'https:') {
-      DeviceOrientationEvent.requestPermission()
-        .then(permissionState => {
-          if (permissionState === 'granted') {
-            window.addEventListener('deviceorientation', () => {});
-          }
-        })
-        .catch(console.error);
-    } else {
-      // handle regular non iOS 13+ devices
-    }
-  }
-  </script>
 </html>
