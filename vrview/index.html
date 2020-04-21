@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 
 	</head>
-	<body onLoad="onClick();">
+	<body onload="onClick()">
         <div id="error" class="dialog">
             <div class="wrap">
               <h1 class="title">Error</h1>
@@ -29,6 +29,7 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('devicemotion', () => {});
+            window.onload = onClick;
           }
         })
         .catch(console.error);
@@ -45,6 +46,7 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('deviceorientation', () => {});
+            window.onload = onClick;
           }
         })
         .catch(console.error);
