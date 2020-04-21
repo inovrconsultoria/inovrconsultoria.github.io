@@ -17,6 +17,9 @@
               <p class="message">An unknown error occurred.</p>
             </div>
           </div>
+          <script>
+            window.onload = onClick;
+          </script>
           <script src="https://inovrconsultoria.github.io/vrview/build/vrview.js"></script>
 
 
@@ -29,7 +32,6 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('devicemotion', () => {});
-            window.onload = onClick;
           }
         })
         .catch(console.error);
@@ -46,7 +48,6 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('deviceorientation', () => {});
-            window.onload = onClick;
           }
         })
         .catch(console.error);
