@@ -10,24 +10,22 @@
     <link rel="stylesheet" href="style.css">
 
 	</head>
-	<body onload="onClick()">
+	<body>
         <div id="error" class="dialog">
             <div class="wrap">
               <h1 class="title">Error</h1>
               <p class="message">An unknown error occurred.</p>
             </div>
           </div>
-          <script>
-            window.onload = onClick;
-          </script>
-          <script src="https://inovrconsultoria.github.io/vrview/build/vrview.js"></script>
+          <button id="permission" onclick="onClick()";'>LIBERAR GIROSCOPIO</button>
+          <script src="build/vrview.js"></script>
 
 
   </body>
   <script type="text/javascript">
   function onClick() {
     // feature detect
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+    if (typeof DeviceMotionEvent.requestPermission === 'function' && location.protocol == 'https:') {
       DeviceMotionEvent.requestPermission()
         .then(permissionState => {
           if (permissionState === 'granted') {
@@ -43,7 +41,7 @@
 <script type="text/javascript">
   function onClick() {
     // feature detect
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function' && location.protocol == 'https:') {
       DeviceOrientationEvent.requestPermission()
         .then(permissionState => {
           if (permissionState === 'granted') {
