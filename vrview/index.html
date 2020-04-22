@@ -27,7 +27,7 @@
               <p class="message">An unknown error occurred.</p>
             </div>
         </div>
-        <div class="mobileShow"><button id="permission" onclick="this.style.visibility='hidden'; onClick()";>LIBERAR GIRO</button></div>
+        <div class="mobileShow"><button id="permission" onclick="this.style.visibility='hidden'; onClick(); enableNoSleep()";>LIBERAR GIRO</button></div>
           <script src="build/vrview.js"></script>
 
   </body>
@@ -63,4 +63,14 @@
     }
   }
   </script>
+        <script type="text/javascript">
+        var noSleep = new NoSleep();
+          function enableNoSleep() {
+          noSleep.enable();
+          document.removeEventListener('touchstart', enableNoSleep, false);
+          }
+          // Enable wake lock.
+          // (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+          document.addEventListener('touchstart', enableNoSleep, false);
+        </script>
 </html>
