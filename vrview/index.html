@@ -16,19 +16,9 @@
               <h1 class="title">Error</h1>
               <p class="message">An unknown error occurred.</p>
             </div>
-          </div>
-          <script src="https://richtr.github.io/NoSleep.js/dist/NoSleep.min.js"></script>
-
-          <script>
-            function onClick() {
-              var wakeLockEnabled = false;
-                noSleep.enable(); // keep the screen on!
-                wakeLockEnabled = true;
-            }
-          </script>
-          <button id="permission" onclick="onClick()";>LIBERAR GIRO</button>
+        </div>
+          <div class="hidden-div" id="hidden-div"><button id="permission" onclick="onClick()";>LIBERAR GIRO</button></div>
           <script src="build/vrview.js"></script>
-
 
   </body>
   <script type="text/javascript">
@@ -39,6 +29,8 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('devicemotion', () => {});
+            document.getElementById('hidden-div').classList.add('show');
+            document.getElementById('button-id').classList.add('hide');
           }
         })
         .catch(console.error);
@@ -55,6 +47,8 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('deviceorientation', () => {});
+            document.getElementById('hidden-div').classList.add('show');
+            document.getElementById('button-id').classList.add('hide');
           }
         })
         .catch(console.error);
