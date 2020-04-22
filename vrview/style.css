@@ -93,11 +93,3 @@ canvas:active {
   height : 50px;
   z-index : // as per your requirement, just make sure overlay is on  top of everything on the screen
  }
-
- .hide{
-  display:none;
-  }
-  
-  .show{
-  display:block;
-  }

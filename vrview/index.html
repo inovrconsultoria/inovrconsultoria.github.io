@@ -17,7 +17,7 @@
               <p class="message">An unknown error occurred.</p>
             </div>
         </div>
-          <div class="hidden-div" id="hidden-div"><button id="permission" onclick="onClick()";>LIBERAR GIRO</button></div>
+          <button id="permission" onclick="this.style.visibility='hidden'; onClick()";>LIBERAR GIRO</button>
           <script src="build/vrview.js"></script>
 
   </body>
@@ -29,8 +29,6 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('devicemotion', () => {});
-            document.getElementById('hidden-div').classList.add('show');
-            document.getElementById('button-id').classList.add('hide');
           }
         })
         .catch(console.error);
@@ -47,8 +45,6 @@
         .then(permissionState => {
           if (permissionState === 'granted') {
             window.addEventListener('deviceorientation', () => {});
-            document.getElementById('hidden-div').classList.add('show');
-            document.getElementById('button-id').classList.add('hide');
           }
         })
         .catch(console.error);
