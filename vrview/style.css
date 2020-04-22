@@ -87,16 +87,10 @@ canvas:active {
 
 
 #permission{
-  display: none;
+  position : absolute;
+  top : 5px;
+  left: 5px;
+  width : 80px;
+  height : 50px;
+  z-index : // as per your requirement, just make sure overlay is on  top of everything on the screen
  }
-
- @media  (max-width: 480px) {
-  #permission{
-    position : absolute;
-    top : 5px;
-    left: 5px;
-    width : 80px;
-    height : 50px;
-    z-index : // as per your requirement, just make sure overlay is on  top of everything on the screen
-  }
-}
