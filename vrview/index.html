@@ -8,6 +8,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="stylesheet" href="style.css">
+    <style type="text/css">
+      .mobileShow {display: none;}
+    
+      /* Smartphone Portrait and Landscape */
+      @media only screen
+        and (min-device-width : 320px)
+        and (max-device-width : 480px){ 
+          .mobileShow {display: inline;}
+      }
+    </style>
 
 	</head>
 	<body>
@@ -17,7 +27,7 @@
               <p class="message">An unknown error occurred.</p>
             </div>
         </div>
-          <button id="permission" onclick="this.style.visibility='hidden'; onClick()";>LIBERAR GIRO</button>
+        <div class="mobileShow"><button id="permission" onclick="this.style.visibility='hidden'; onClick()";>LIBERAR GIRO</button></div>
           <script src="build/vrview.js"></script>
 
   </body>
