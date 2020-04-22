@@ -88,9 +88,11 @@ canvas:active {
 
 #permission{
   position : absolute;
-  top : 5px;
-  left: 5px;
-  width : 80px;
-  height : 50px;
+  width: 10%;
+  margin-left: 45%;
+  margin-right: 45%;
+  height : 10%;
+  margin-top: 45%;
+  margin-bottom: 45%;
   z-index : // as per your requirement, just make sure overlay is on  top of everything on the screen
  }
