@@ -85,6 +85,8 @@ canvas:active {
   cursor: -webkit-grabbing;
 }
 
+
+@media  (max-width: 1200px) {
 #permission{
   position : absolute;
   top : 5px;
@@ -93,3 +95,4 @@ canvas:active {
   height : 50px;
   z-index : // as per your requirement, just make sure overlay is on  top of everything on the screen
  }
+}
