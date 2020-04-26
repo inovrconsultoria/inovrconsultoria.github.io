@@ -40049,7 +40049,25 @@ FusionPositionSensorVRDevice.prototype.onDeviceMotionChange_ = function(deviceMo
   var accGravity = deviceMotion.accelerationIncludingGravity;
   var rotRate = deviceMotion.rotationRate;
   var timestampS = deviceMotion.timeStamp / 1000;
-
+  var deltaS = timestampS - this.previousTimestampS;
+  if (deltaS < 0) {
+    warnOnce('fusion-pose-sensor:invalid:non-monotonic', 'Invalid timestamps detected: non-monotonic timestamp from devicemotion');
+    this.previousTimestampS = timestampS;
+    return;
+  } else if (deltaS <= MIN_TIMESTEP || deltaS > MAX_TIMESTEP) {
+    warnOnce('fusion-pose-sensor:invalid:outside-threshold', 'Invalid timestamps detected: Timestamp from devicemotion outside expected range.');
+    this.previousTimestampS = timestampS;
+    return;
+  }
+  this.accelerometer.set(-accGravity.x, -accGravity.y, -accGravity.z);
+  if (isR7()) {
+    this.gyroscope.set(-rotRate.beta, rotRate.alpha, rotRate.gamma);
+  } else {
+    this.gyroscope.set(rotRate.alpha, rotRate.beta, rotRate.gamma);
+  }
+  if (!this.isDeviceMotionInRadians) {
+    this.gyroscope.multiplyScalar(Math.PI / 180);
+  }
   // Firefox Android timeStamp returns one thousandth of a millisecond.
   if (this.isFirefoxAndroid) {
     timestampS /= 1000;
@@ -40062,20 +40080,18 @@ FusionPositionSensorVRDevice.prototype.onDeviceMotionChange_ = function(deviceMo
     this.previousTimestampS = timestampS;
     return;
   }
-  this.accelerometer.set(-accGravity.x, -accGravity.y, -accGravity.z);
-  this.gyroscope.set(rotRate.alpha, rotRate.beta, rotRate.gamma);
 
   // With iOS and Firefox Android, rotationRate is reported in degrees,
   // so we first convert to radians.
   if (this.isIOS || this.isFirefoxAndroid) {
     this.gyroscope.multiplyScalar(Math.PI / 180);
   }
-
   this.filter.addAccelMeasurement(this.accelerometer, timestampS);
   this.filter.addGyroMeasurement(this.gyroscope, timestampS);
-
   this.previousTimestampS = timestampS;
 };
+
+
 
 FusionPositionSensorVRDevice.prototype.onScreenOrientationChange_ =
     function(screenOrientation) {
