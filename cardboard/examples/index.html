@@ -57,6 +57,7 @@ canvas {
     <button id="fullscreen">Fullscreen</button>
     <button id="vr">VR (WebVR/Mobile only)</button>
     <button id="reset">Reset</button>
+    <button id="permission" onclick="this.style.visibility='hidden'; onClick(); noSleep.enable()";>LIBERAR GIRO</button>
   </div>
 
 </body>
@@ -254,5 +255,54 @@ function enterFullscreen (el) {
 }
 
 </script>
+<script type="text/javascript">
+  function onClick() {
+    // feature detect
+    if (typeof DeviceMotionEvent.requestPermission === 'function' && location.protocol == 'https:') {
+      DeviceMotionEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            window.addEventListener('devicemotion', () => {});
+          }
+        })
+        .catch(console.error);
+    } else {
+      // handle regular non iOS 13+ devices
+    }
+  }
+</script>
+<script type="text/javascript">
+  function onClick() {
+    // feature detect
+    if (typeof DeviceOrientationEvent.requestPermission === 'function' && location.protocol == 'https:') {
+      DeviceOrientationEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', () => {});
+          }
+        })
+        .catch(console.error);
+    } else {
+      // handle regular non iOS 13+ devices
+    }
+  }
+  </script>
+
+    <script src="https://richtr.github.io/NoSleep.js/dist/NoSleep.min.js"></script>
+    <script>
+      var noSleep = new NoSleep();
+
+      var wakeLockEnabled = false;
+      var toggleEl = document.querySelector("#permission");
+      toggleEl.addEventListener('click', function() {
+        if (!wakeLockEnabled) {
+          noSleep.enable(); // keep the screen on!
+          wakeLockEnabled = true;
+        } else {
+          noSleep.disable(); // let the screen turn off.
+          wakeLockEnabled = false;
+        }
+      }, false);
+    </script>
 
 </html>
