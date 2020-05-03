@@ -6,79 +6,7 @@
     <title>INOVR</title>
     <style>
 
-.mobileShow {display: none;}
-    
-  /* Smartphone Portrait and Landscape */
-    @media only screen
-      and (min-device-width : 320px)
-      and (max-device-width : 480px){ 
-        .mobileShow {display: inline;}
-    }
-
 html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  background-color: #fff;
-}
-
-#progress {
-  position: absolute;
-  width: 100%;
-  height: 3px;
-}
-
-#bar {
-  background-color: #fff;
-  height: 100%;
-  transition: width 0.1s ease;
-}
-
-#bar.hide {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-#container {
-  width: 100%;
-  height: 100%;
-}
-
-#containerdiv {
-  width: 100%;
-  height: 60%;
-}
-
-button {
-  position: absolute;
-  top: 80px;
-  width: 100px;
-  height: 30px;
-}
-
-#btn1 {
-  left: 5px;
-}
-
-#btn2 {
-  left: 110px;
-}
-
-#btn3 {
-  left: 215px;
-}
-
-#btn4 {
-  right: 5px;
-}
-}
-
-/* Landscape */
-@media screen 
-and (min-device-width : 320px)
-and (max-device-width : 480px)
-and (orientation:landscape) {
-  html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -108,70 +36,22 @@ and (orientation:landscape) {
   height: 100%;
 }
 
-button {
-  position: absolute;
-  top: 80px;
-  width: 100px;
-  height: 30px;
-}
-
-#btn1 {
-  left: 5px;
-}
-
-#btn2 {
-  left: 110px;
-}
-
-#btn3 {
-  left: 215px;
-}
-
-#btn4 {
-  right: 5px;
-}
-}
-
-
-  /* Portrait mobile*/
-@media screen 
-and (min-device-width : 320px)
-and (max-device-width : 480px)
-and (orientation:portrait){
-  html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  background-color: #fff;
-}
-
-#progress {
-  position: absolute;
-  width: 100%;
-  height: 3px;
-}
-
-#bar {
-  background-color: #fff;
-  height: 100%;
-  transition: width 0.1s ease;
-}
-
-#bar.hide {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-#container {
-  width: 100%;
-  height: 100%;
-}
-
 #containerdiv {
   width: 100%;
   height: 60%;
 }
 
+/* Landscape */
+@media screen 
+  and (min-device-width : 320px)
+  and (max-device-width : 480px)
+  and (orientation:landscape) {
+#containerdiv {
+  width: 100%;
+  height: 100%;
+}
+  }
+
 button {
   position: absolute;
   top: 80px;
@@ -194,9 +74,6 @@ button {
 #btn4 {
   right: 5px;
 }
-}
-
-
 
     </style>
   </head>
