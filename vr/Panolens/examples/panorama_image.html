@@ -59,7 +59,7 @@ html, body {
 }
 
 #img {
-  display: hide;
+  display: none;
 }
   }
 
@@ -82,9 +82,17 @@ button {
   left: 215px;
 }
 
-#btn4 {
-  right: 5px;
-}
+#btn4 {display: none;}
+    
+    /* Smartphone Portrait and Landscape */
+    @media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 480px){ 
+      #btn4 {
+        display: inline;
+        right: 5px;
+      }
+    }
 
     </style>
   </head>
@@ -101,10 +109,10 @@ button {
       <div id="bar"></div>
     </div>
     <div id="container"></div>
-    <button id="btn1">Panorama1</button>
-    <button id="btn2">Panorama2</button>
+    <button id="btn1">Entrada</button>
+    <button id="btn2">Sala</button>
     <button id="btn3">Jantar</button>
-    <button id="btn4" onclick="this.style.visibility='hidden'; onClick()">GIROSCOPIO</button>
+    <button id="btn4" onclick="this.style.visibility='hidden'; onClick(); noSleep.enable()">GIROSCOPIO</button>
     
     <script>
 
@@ -125,7 +133,7 @@ function onProgressUpdate ( event ) {
 
 container = document.querySelector( '#container' );
 
-panorama1 = new PANOLENS.ImagePanorama( 'https://vr.inovr.co/img/EX1.jpg' );
+panorama1 = new PANOLENS.ImagePanorama( 'EX1.jpg' );
 panorama1.addEventListener( 'progress', onProgressUpdate );
 
 panorama2 = new PANOLENS.ImagePanorama( 'EX3.jpg' );
@@ -196,4 +204,22 @@ button3.addEventListener( 'click', onButtonClick.bind( this, panorama3 ) );
       }
     }
     </script>
+
+<script src="https://richtr.github.io/NoSleep.js/dist/NoSleep.min.js"></script>
+<script>
+  var noSleep = new NoSleep();
+
+  var wakeLockEnabled = false;
+  var toggleEl = document.querySelector("#permission");
+  toggleEl.addEventListener('click', function() {
+    if (!wakeLockEnabled) {
+      noSleep.enable(); // keep the screen on!
+      wakeLockEnabled = true;
+    } else {
+      noSleep.disable(); // let the screen turn off.
+      wakeLockEnabled = false;
+    }
+  }, false);
+</script>
+
 </html>
