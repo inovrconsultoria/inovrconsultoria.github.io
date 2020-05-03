@@ -219,7 +219,7 @@ button3.addEventListener( 'click', onButtonClick.bind( this, panorama3 ) );
   var noSleep = new NoSleep();
 
   var wakeLockEnabled = false;
-  var toggleEl = document.querySelector("#permission");
+  var toggleEl = document.querySelector("#btn4");
   toggleEl.addEventListener('click', function() {
     if (!wakeLockEnabled) {
       noSleep.enable(); // keep the screen on!
