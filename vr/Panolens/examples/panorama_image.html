@@ -2,7 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Panolens.js panorama image panorama</title>
     <style>
       html, body {
@@ -46,7 +49,7 @@
     <script>
 
       const panorama = new PANOLENS.ImagePanorama( 'asset/textures/equirectangular/field.jpg' );
-      const viewer = new PANOLENS.Viewer( { output: 'console' } );
+      const viewer = new PANOLENS.Viewer();
       viewer.add( panorama );
 
     </script>
