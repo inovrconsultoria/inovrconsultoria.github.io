@@ -1,0 +1,60 @@
+<HTML>
+    <HEAD>
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<style>
+/* Landscape */
+@media screen 
+  and (min-device-width : 320px)
+  and (max-device-width : 480px)
+  and (orientation:landscape) {
+    #horizontal {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  background-color: #fff;
+}
+
+  #img { display: none};
+
+  }
+</style>
+
+        <title>inoVR</title>
+    
+    </HEAD>
+    
+    <BODY>
+    
+    <CENTER><IMG id="img" SRC="1.jpg" border=0 width="100%"></CENTER>
+    
+<center><iframe id="horizontal" width="85%" height="500px" frameborder="0" src="https://inovrconsultoria.github.io/vr/Panolens/examples/teste.html" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; screen-wake-lock" mozallowfullscreen msallowfullscreen oallowfullscreen webkitallowfullscreen allowfullscreen></iframe>
+
+
+      <button onclick="openFullscreen();">Fullscreen Mode</button>
+      <p><strong>Tip:</strong> Press the "Esc" key to exit full screen.</p>
+      
+      
+      <script>
+      var elem = document.getElementById("1");
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          elem.msRequestFullscreen();
+        }
+      }
+      </script>
+    
+    <CENTER><IMG id="img" SRC="2.jpg" border=0 width="100%"></CENTER>
+    
+    </BODY>
+    </HTML> 
