@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Panolens.js panorama image panorama</title>
+    <style>
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  background-color: #fff;
+}
+
+#progress {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+}
+
+#bar {
+  background-color: #fff;
+  height: 100%;
+  transition: width 0.1s ease;
+}
+
+#bar.hide {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  position: absolute;
+  top: 10px;
+  width: 100px;
+  height: 30px;
+}
+
+#btn1 {
+  left: 5px;
+}
+
+#btn2 {
+  left: 110px;
+}
+
+#btn3 {
+  left: 215px;
+}
+
+#btn4 {
+  right: 5px;
+}
+    </style>
+  </head>
+
+  <body>
+
+    <script src="../../js/three/three.min.js"></script>
+    <script src="../../js/panolens/panolens.min.js"></script>
+
+    <div id="progress">
+      <div id="bar"></div>
+    </div>
+    <div id="container"></div>
+    <button id="btn1">Panorama1</button>
+    <button id="btn2">Panorama2</button>
+    <button id="btn3">Panorama3</button>
+    <button id="btn4" onclick="this.style.visibility='hidden'; onClick()">GIROSCOPIO</button>
+    
+    <script>
+
+var panorama1, panorama2, panorama3, viewer, container, infospot;
+
+var bar = document.querySelector( '#bar' );
+
+function onProgressUpdate ( event ) {
+  var percentage = event.progress.loaded/ event.progress.total * 100;
+  bar.style.width = percentage + "%";
+  if (percentage >= 100){
+    bar.classList.add( 'hide' );
+    setTimeout(function(){
+      bar.style.width = 0;
+    }, 1000);
+  }
+}
+
+container = document.querySelector( '#container' );
+
+panorama1 = new PANOLENS.ImagePanorama( 'https://pchen66.github.io/Panolens/examples/asset/textures/equirectangular/tunnel.jpg' );
+panorama1.addEventListener( 'progress', onProgressUpdate );
+
+panorama2 = new PANOLENS.ImagePanorama( 'https://pchen66.github.io/Panolens/examples/asset/textures/equirectangular/sunset.jpg' );
+panorama2.addEventListener( 'progress', onProgressUpdate );
+
+panorama3 = new PANOLENS.ImagePanorama( 'https://pchen66.github.io/Panolens/examples/asset/textures/equirectangular/road.jpg' );
+panorama3.addEventListener( 'progress', onProgressUpdate );
+
+infospot = new PANOLENS.Infospot( 350, PANOLENS.DataImage.Info );
+
+panorama1.add( infospot );
+
+viewer = new PANOLENS.Viewer( { container: container } );
+viewer.add( panorama1, panorama2, panorama3 );
+
+// Maunal Set Panorama
+var button1 = document.querySelector( '#btn1' );
+var button2 = document.querySelector( '#btn2' );
+var button3 = document.querySelector( '#btn3' );
+
+// Enter panorama when load completes
+function onButtonClick( targetPanorama ) {
+  bar.classList.remove( 'hide' );
+  viewer.setPanorama( targetPanorama );
+}
+
+button1.addEventListener( 'click', onButtonClick.bind( this, panorama1 ) );
+
+button2.addEventListener( 'click', onButtonClick.bind( this, panorama2 ) );
+
+button3.addEventListener( 'click', onButtonClick.bind( this, panorama3 ) );
+
+    </script>
+  </body>
+  <script type="text/javascript">
+    function onClick() {
+      // feature detect
+      if (typeof DeviceMotionEvent.requestPermission === 'function' && location.protocol == 'https:') {
+        DeviceMotionEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              window.addEventListener('devicemotion', () => {});
+            }
+          })
+          .catch(console.error);
+      } else {
+        // handle regular non iOS 13+ devices
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    function onClick() {
+      // feature detect
+      if (typeof DeviceOrientationEvent.requestPermission === 'function' && location.protocol == 'https:') {
+        DeviceOrientationEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              window.addEventListener('deviceorientation', () => {});
+            }
+          })
+          .catch(console.error);
+      } else {
+        // handle regular non iOS 13+ devices
+      }
+    }
+    </script>
+</html>
