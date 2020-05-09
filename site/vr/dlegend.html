@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>INOVR Co.</title>
+    <style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #fff;
+}
+
+#progress {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+}
+
+#bar {
+  background-color: #fff;
+  height: 100%;
+  transition: width 0.1s ease;
+}
+
+#bar.hide {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+}
+
+#containerdiv {
+  width: 100%;
+  height: 70%;
+}
+
+button {
+  position: absolute;
+  top: 80px;
+  width: 90px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.315);
+}
+
+/* Landscape */
+@media screen 
+  and (min-device-width : 320px)
+  and (max-device-width : 480px)
+  and (orientation:landscape) {
+    html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  background-color: #fff;
+}
+
+#containerdiv {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  position: absolute;
+  top: 5px;
+  width: 90px;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.315);
+}
+
+#img {
+  display: none;
+}
+  }
+
+#btn1 {
+  left: 5px;
+}
+
+#btn2 {
+  left: 100px;
+}
+
+#btn3 {
+  left: 195px;
+}
+
+#btn4 {display: none;}
+    
+    /* Smartphone Portrait and Landscape */
+    @media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 480px){ 
+      #btn4 {
+        display: inline;
+        right: 5px;
+      }
+    }
+
+    </style>
+  </head>
+  <body>
+    <CENTER><IMG id="img" SRC="1.jpg" border=0 width="100%" height="20%"></CENTER>
+    <script src="2VS.js"></script>
+    <script src="1VS.js"></script>
+
+    <div id="containerdiv">
+    <div id="progress">
+      <div id="bar"></div>
+    </div>
+    <div id="container"></div>
+    <button id="btn1">Entrada</button>
+    <button id="btn2">Sala</button>
+    <button id="btn3">Jantar</button>
+    <button id="btn4" onclick="this.style.visibility='hidden'; onClick(); noSleep.enable()">GIROSCOPIO</button>
+    <script src="index.js"></script>
+    </div>
+    <CENTER><IMG id="img" SRC="2.jpg" border=0 width="100%"></CENTER>
+
+  </body>
+  <script type="text/javascript">
+    function onClick() {
+      // feature detect
+      if (typeof DeviceMotionEvent.requestPermission === 'function' && location.protocol == 'https:') {
+        DeviceMotionEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              window.addEventListener('devicemotion', () => {});
+            }
+          })
+          .catch(console.error);
+      } else {
+        // handle regular non iOS 13+ devices
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    function onClick() {
+      // feature detect
+      if (typeof DeviceOrientationEvent.requestPermission === 'function' && location.protocol == 'https:') {
+        DeviceOrientationEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              window.addEventListener('deviceorientation', () => {});
+            }
+          })
+          .catch(console.error);
+      } else {
+        // handle regular non iOS 13+ devices
+      }
+    }
+    </script>
+
+<script src="https://richtr.github.io/NoSleep.js/dist/NoSleep.min.js"></script>
+<script>
+  var noSleep = new NoSleep();
+
+  var wakeLockEnabled = false;
+  var toggleEl = document.querySelector("#btn4");
+  toggleEl.addEventListener('click', function() {
+    if (!wakeLockEnabled) {
+      noSleep.enable(); // keep the screen on!
+      wakeLockEnabled = true;
+    } else {
+      noSleep.disable(); // let the screen turn off.
+      wakeLockEnabled = false;
+    }
+  }, false);
+</script>
+
+</html>
